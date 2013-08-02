@@ -1,0 +1,65 @@
+﻿<section>
+    <form class="form-horizontal">
+        <fieldset>
+            <!-- Address form -->
+
+            <legend class="page-title" data-bind="text: title"></legend>
+
+            <!-- full-name input-->
+            <div class="control-group">
+                <label class="control-label">Family name</label>
+                <div class="controls">
+                    <input name="familyName" type="text" placeholder="family name"
+                        class="input-xlarge" data-bind="value: settings.familyName">
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <!-- users select -->
+            <div class="control-group">
+                <label class="control-label">Users</label>
+                <div class="controls">
+                    <div class="_well">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>email</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: settings.users">
+                                
+                                <tr data-bind="click: $root.editUser">
+                                    <td data-bind="text: name"></td>
+                                    <td data-bind="text: calendar"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                                    <div class="btn-toolbar">
+                <button class="btn" data-bind="click: newUser">New User</button>
+            </div>
+
+                    </div>
+                    <p class="help-block"></p>
+                </div>
+            </div>
+                        <!-- full-name input-->
+            <div class="control-group">
+                <label class="control-label">Primary calendar</label>
+                <div class="controls">
+                    <input name="familyName" type="text" placeholder="deafult calendar"
+                        class="input-xlarge" data-bind="value: settings.familyCalendar">
+                    <p class="help-block">This is where all common events and tasks are stored</p>
+                </div>
+            </div>
+
+              <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success" data-bind="click: saveSettings">Save settings</button>
+      </div>
+    </div>
+
+
+        </fieldset>
+    </form>
+</section>

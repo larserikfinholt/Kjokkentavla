@@ -1,0 +1,6 @@
+﻿<h1>Users</h1>
+<ul data-bind="foreach: users">
+    <li><button class="btn  btn-large" data-bind="text: name"></button>
+        <span class="badge" data-bind="text: count, visible: count>0"></span>
+    </li>
+</ul>

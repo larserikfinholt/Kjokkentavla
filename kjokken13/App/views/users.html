@@ -1,0 +1,34 @@
+﻿<div class="messageBox">
+    <div class="modal-header">
+        <h3 data-bind="html: title"></h3>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="control-group">
+                <label class="control-label">Name</label>
+                <div class="controls">
+                    <input name="name" type="text" placeholder="name"
+                        class="input-xlarge" data-bind="value: selectedUser().name">
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Calendar</label>
+                <div class="controls">
+                    <label class="checkbox">
+                        <input type="checkbox" data-bind="checked: useOwnCalendar">
+                        Use separate calender for this user
+                    </label>
+
+                    <select name="calendar" data-bind="options: calendars.entries, optionsText: 'summary', optionsValue: 'id', value: selectedUser().calendar, enable: useOwnCalendar"></select>
+                    <p class="help-block"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-bind="click: save">Update</button>
+        <button class="btn">Cancel</button>
+    </div>
+</div>
