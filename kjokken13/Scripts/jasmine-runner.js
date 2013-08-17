@@ -7,6 +7,7 @@
     paths: {
         jquery: '/scripts/jquery-1.9.1',
         'knockout': '/scripts/knockout-2.2.1',
+        'knockout.mapping': '/scripts/knockout.mapping-latest.debug',
         'mockJSON': '/scripts/mockjson',
         'mockajax': '/scripts/mockajax',
         'jasmine': '/scripts/jasmine/jasmine',
@@ -51,7 +52,9 @@ require(['jquery', 'jasmine-html'], function ($, jasmine) {
     };
 
     var specs = [];
-
+    specs.push('/app/specs/user.spec.js');
+    specs.push('/app/specs/auth.spec.js');
+    specs.push('/app/specs/settings.spec.js');
     specs.push('/app/specs/calendar.spec.js');
 
 

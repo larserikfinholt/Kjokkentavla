@@ -4,7 +4,8 @@
         'durandal': '../Scripts/durandal',
         'plugins': '../Scripts/durandal/plugins',
         'transitions': '../Scripts/durandal/transitions',
-        'underscore' : '../Scripts/underscore'
+        'underscore': '../Scripts/underscore',
+        'knockout.mapping': '/scripts/knockout.mapping-latest.debug',
     },
     shim: {
         'underscore': {
@@ -15,6 +16,7 @@
 
 define('jquery', [], function() { return jQuery; });
 define('knockout', [], function () { return ko; });
+define('komapping', [], function () { return ko.mapping; });
 
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/auth', 'viewmodels/settings'],  function (system, app, viewLocator, auth, settings) {
     //>>excludeStart("build", true);

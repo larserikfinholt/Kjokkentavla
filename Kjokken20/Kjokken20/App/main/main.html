@@ -1,0 +1,16 @@
+﻿<div>
+
+    <div class="row" data-bind="foreach: users">
+        <div class="col-sm-2">
+      <h3 data-bind="text: name"></h3>
+      <ul class="list-group" data-bind="foreach: entries">
+        <li class="list-group-item"><div>
+          <p data-bind="text: title"/>
+          <p data-bind="textualDate: start"/>
+          </div>
+        </li>
+      </ul>
+      </div>
+    </div>
+
+</div>

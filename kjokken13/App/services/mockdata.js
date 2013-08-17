@@ -55,6 +55,7 @@ define(['durandal/system', 'services/logger', 'durandal/app'],
             data: { action: "bar" },
             responseTime: 750,
             responseText: $.mockJSON.generateFromTemplate({
+                familyName: 'FamilyName',
                 "users|3-7": [
                     {
                         "name": '@MALE_FIRST_NAME',
@@ -71,6 +72,31 @@ define(['durandal/system', 'services/logger', 'durandal/app'],
                 }]
             })
         });
+        // Settings service2
+        // settings2/* 
+        $.mockjax({
+            url: '/mainsettings/*',
+            data: { action: "bar" },
+            responseTime: 750,
+            responseText: {
+                familyName: 'Finholt',
+                mainCalendar: 'familien.finholt@gmail.com',
+                users: [{
+                    name: "Lars Erik",
+                    id: "users/1",
+                    calendar: "lars.erik.finholt@gmail.com"
+                },
+                {
+                    name: "Camilla",
+                    id: "users/2",
+                    calendar: "camilla.finholt@gmail.com"
+                }
+                ]
+            }
+        });
+
+
+
         // Calendar entries service
         // calendars/*
         $.mockjax({
@@ -116,10 +142,10 @@ define(['durandal/system', 'services/logger', 'durandal/app'],
 
 
 
-        function loadSettings(suc) {
+        function loadSettings1(suc) {
             suc({
                 familyName: 'Finholt',
-                familyCalendar: 'familien.finholt@gmail.com',
+                mainCalendar: 'familien.finholt@gmail.com',
                 users: [{
                     name: "Lars Erik",
                     id: "users/1",
@@ -132,6 +158,12 @@ define(['durandal/system', 'services/logger', 'durandal/app'],
                 }
                 ]
             });
+        }
+
+ 
+        function loadSettings(user) {
+            log("Getting settings for", user);
+            return $.getJSON("/mainsettings/" + user);
         }
 
 

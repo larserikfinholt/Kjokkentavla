@@ -104,8 +104,13 @@
     <Content Include="App\services\googledata.js" />
     <Content Include="App\services\logger.js" />
     <Content Include="App\services\mockdata.js" />
+    <Content Include="App\specs\auth.spec.js" />
     <Content Include="App\specs\calendar.spec.js" />
+    <Content Include="App\specs\settings.spec.js" />
+    <Content Include="App\User\user.spec.js" />
     <Content Include="App\viewmodels\calendar.js" />
+    <Content Include="App\User\users.js" />
+    <Content Include="App\viewmodels\mainscreen.js" />
     <Content Include="App\viewmodels\details.js" />
     <Content Include="App\viewmodels\flickr.js" />
     <Content Include="App\viewmodels\home.js" />
@@ -115,6 +120,7 @@
     <Content Include="App\viewmodels\setup.js" />
     <Content Include="App\viewmodels\myshell.js" />
     <Content Include="App\viewmodels\shell.js" />
+    <Content Include="App\User\user.js" />
     <Content Include="App\viewmodels\users.js" />
     <Content Include="App\viewmodels\welcome.js" />
     <Content Include="App\views\calendar.html" />
@@ -161,6 +167,8 @@
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
     <Content Include="Scripts\jasmine\MIT.LICENSE" />
+    <None Include="Properties\PublishProfiles\kjokkentavla - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\kjokkentavla - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\almond-custom.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -198,6 +206,7 @@
     <Content Include="Scripts\text.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Durandal\Index.cshtml" />
