@@ -39,4 +39,13 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator'], function (sy
         //Show the app by setting the root view model for our application with a transition.
         app.setRoot('shell/shell', 'entrance');
     });
+
+
+    ko.bindingHandlers.textualDate = {
+        update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+            var valueUnwrapped = ko.utils.unwrapObservable(valueAccessor());
+            var textContent = moment(valueUnwrapped).format("MMM Do YY");
+            ko.bindingHandlers.text.update(element, function () { return textContent; });
+        }
+    };
 });

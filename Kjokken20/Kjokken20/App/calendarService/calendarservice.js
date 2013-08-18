@@ -10,9 +10,11 @@
 
     var calendarService = {
         loadForUser: function (user) {
-            console.log("loading calendar for usera ", user);
             for (var i = 0; i < 3; i++) {
                 user.addCalendarEntry(new CalendarEntry({ title: 'Fotballtrening title' + i, start: Date() }));
+            }
+            for (var i = 0; i < 3; i++) {
+                user.addCalendarEntry(new CalendarEntry({ title: 'ImorgenAktitet title' + i, start: new Date(new Date().getTime() + 1000 * 60 * 60 * 24) }));
             }
         }
     };

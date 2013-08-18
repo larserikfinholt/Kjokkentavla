@@ -13,6 +13,7 @@ namespace Kjokken20 {
             .Include("~/Scripts/underscore.js")
             .Include("~/Scripts/bootstrap.js")
 			.Include("~/Scripts/knockout-{version}.js")
+            .Include("~/Scripts/moment.js")
 		);
 
       bundles.Add(

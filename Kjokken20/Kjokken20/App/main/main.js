@@ -4,18 +4,22 @@
 
     var vm = {
         users: ko.observableArray([]),
-        currentDay: ko.observable(new Date()),
+        selectedDate: ko.observable(new Date()), 
         addUser: function (user) {
             this.users.push(user);
         },
         loadCalendars: function () {
             _.each(this.users(), function (user) {
-                console.log(user);
                 user.loadCalendar();
             });
         },
-
-
+        changeDate: function (data, event) {
+            if ($(event.currentTarget).data('direction') == 'next') {
+                this.selectedDate(new Date(this.selectedDate().getTime() + 1000 * 60 * 60 * 24));
+            } else {
+                this.selectedDate(new Date(this.selectedDate().getTime() - 1000 * 60 * 60 * 24));
+            }
+        }
     };
 
     app.on("settings:loaded", function () {
