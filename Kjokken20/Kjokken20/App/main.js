@@ -4,14 +4,15 @@
         'durandal': '../Scripts/durandal',
         'plugins': '../Scripts/durandal/plugins',
         'transitions': '../Scripts/durandal/transitions',
-        'underscore': '../Scripts/underscore'
+        'underscore': '../Scripts/underscore',
+        'knockout': '../Scripts/knockout-2.3.0',
+        'jquery': '../Scripts/jquery-1.9.1'
     },
-     
-        shim: {
-            'underscore': {
-                exports: '_'
-            }
+    shim: {
+        'underscore': {
+            exports: '_'
         }
+    }
 });
 
 define('jquery', function () { return jQuery; });

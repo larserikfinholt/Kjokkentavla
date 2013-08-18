@@ -8,7 +8,7 @@ namespace Kjokken20 {
       AddDefaultIgnorePatterns(bundles.IgnoreList);
 
 	  bundles.Add(
-		new ScriptBundle("~/Scripts/vendor.js")
+		new ScriptBundle("~/Scripts/vendor")
 			.Include("~/Scripts/jquery-{version}.js")
             .Include("~/Scripts/underscore.js")
             .Include("~/Scripts/bootstrap.js")
@@ -20,10 +20,12 @@ namespace Kjokken20 {
           .Include("~/Content/ie10mobile.css")
           .Include("~/Content/bootstrap/bootstrap.min.css")
           .Include("~/Content/bootstrap/bootstrap-glyphicons.min.css")
-          .Include("~/Content/font-awesome.min.css")
+          //.Include("~/Content/font-awesome.min.css")
 		  .Include("~/Content/durandal.css")
           .Include("~/Content/starterkit.css")
         );
+
+      //throw new ApplicationException("jj");
     }
 
     public static void AddDefaultIgnorePatterns(IgnoreList ignoreList) {
