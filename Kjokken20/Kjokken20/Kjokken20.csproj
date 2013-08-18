@@ -142,6 +142,10 @@
     <Content Include="App\main.js" />
     <Content Include="App\main\main.js" />
     <Content Include="App\main\main.html" />
+    <Content Include="App\specs\auth.spec.js" />
+    <Content Include="App\specs\calendar.spec.js" />
+    <Content Include="App\specs\settings.spec.js" />
+    <Content Include="App\specs\user.spec.js" />
     <Content Include="App\user\user.html" />
     <Content Include="App\user\user.js" />
     <Content Include="App\viewmodels\flickr.js" />
