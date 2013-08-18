@@ -4,6 +4,7 @@
 
     var vm = {
         users: ko.observableArray([]),
+        currentDay: ko.observable(new Date()),
         addUser: function (user) {
             this.users.push(user);
         },
