@@ -138,6 +138,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\calendarService\calendarservice.js" />
+    <Content Include="App\calendar\calendar-dialog.html" />
+    <Content Include="App\calendar\calendar-dialog.js" />
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />
     <Content Include="App\main\main.js" />
