@@ -198,6 +198,7 @@
     <Content Include="Content\fonts\glyphiconshalflings-regular.eot" />
     <None Include="Properties\PublishProfiles\kjokkentavla - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\kjokkentavla - Web Deploy.pubxml" />
+    <Content Include="Scripts\jasmine-runner.js" />
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
     <Content Include="Scripts\jasmine\MIT.LICENSE" />
