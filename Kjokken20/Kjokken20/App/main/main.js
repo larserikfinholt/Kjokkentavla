@@ -1,4 +1,4 @@
-﻿define(['plugins/http', 'durandal/app', 'knockout', 'user/user', 'underscore'], function (http, app, ko, usermodule, _) {
+﻿define(['plugins/http', 'durandal/app', 'knockout', 'user/user', 'underscore', 'calendar/dummydata'], function (http, app, ko, usermodule, _, dummydata) {
 
     
 
@@ -24,12 +24,11 @@
 
     app.on("settings:loaded", function () {
 
+        _.each(dummydata.users, function (user) {
 
-        vm.addUser(new usermodule.User({ name: 'user1' }));
-        vm.addUser(new usermodule.User({ name: 'user2' }));
-        vm.addUser(new usermodule.User({ name: 'user3' }));
-        vm.addUser(new usermodule.User({ name: 'user4' }));
-        vm.addUser(new usermodule.User({ name: 'user5' }));
+            vm.addUser(new usermodule.User(user));
+        });
+
 
         vm.loadCalendars();
 

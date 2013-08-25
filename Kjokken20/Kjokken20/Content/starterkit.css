@@ -47,6 +47,36 @@
     visibility: visible;
 }
 
+
+.todorow {
+
+    
+}
+
+.tmp {
+    height:200px;
+    position:relative;
+}
+
+.tmp ul  {
+bottom:0px;
+position:absolute;
+width:100%;
+margin-bottom:0px;
+}
+.todorow div.col-sm-2 {
+
+}
+
+.todo li {
+    background-color:#f2dede;
+}
+
+.mainrow {
+    position:relative;
+}
+
+
 @media (max-width: 979px) {
     .page-host {
         top: 0;

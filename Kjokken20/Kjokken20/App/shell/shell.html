@@ -27,3 +27,7 @@
 
 </nav>
 <div class="container-fluid page-host" data-bind="router: { transition: 'entrance', cacheViews: true }"></div>
+<div id="loginView" style="width: 100%;" data-bind="visible: !loggedIn()">
+    <!-- ko compose: {view: 'login'} -->
+    <!--/ko-->
+</div>

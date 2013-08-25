@@ -1,4 +1,5 @@
 ﻿requirejs.config({
+    urlArgs: "bust=" + (new Date()).getTime() ,
     paths: {
         'text': '../Scripts/text',
         'durandal': '../Scripts/durandal',
@@ -18,12 +19,15 @@
 define('jquery', function () { return jQuery; });
 define('knockout', ko);
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator'], function (system, app, viewLocator) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/auth'], function (system, app, viewLocator, auth) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
 
-    app.title = 'Durandal Starter Kit';
+    // Global auth for use with google
+    window.auth = auth;
+
+    app.title = 'Kjøkkentavla';
 
     app.configurePlugins({
         router: true,
@@ -49,3 +53,11 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator'], function (sy
         }
     };
 });
+
+window.handleGoogleLoaded = function (result) {
+    console.log(result, app);
+
+    gapi.auth.authorize({ client_id: 'clientId', scope: 'scopes', immediate: true }, function (res) {
+        console.log(res);
+    });
+};

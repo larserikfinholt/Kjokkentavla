@@ -41,5 +41,14 @@
         <script type="text/javascript" src="~/App/main-built.js"></script>
     }
 
+    <!-- Uncomment below to use fake auth and mock data -->
+     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    <script>
+        window.runMode = "Google";
+        if (window.runMode != "Google") { console.log("Fake authentication"); handleClientLoad(); }
+    </script>
+
+
+
 </body>
 </html>

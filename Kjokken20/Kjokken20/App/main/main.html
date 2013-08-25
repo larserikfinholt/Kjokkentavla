@@ -1,17 +1,39 @@
 ﻿<div>
     <div class="row">
         <div class="col-sm-2 col-sm-offset-8">
-            <span data-bind="textualDate: selectedDate"></span>
         </div>
-        <div class="col-sm-2">
-            <button class="btn" data-bind="click: changeDate" data-direction="prev"><<</button>
-            <button class="btn" data-bind="click: changeDate" data-direction="next">>></button>
+        <div class="col-sm-2 ">
+            <p><span data-bind="textualDate: selectedDate"></span>
+                <img src="http://symbol.yr.no/grafikk/sym/b48/01d.png" width="48" height="48" alt="Klarvær">
+            </p>
+            <button class="btn btn-lg" data-bind="click: changeDate" data-direction="prev"><<</button>
+            <button class="btn btn-lg" data-bind="click: changeDate" data-direction="next">>></button>
         </div>
     </div>
-    <div class="row" data-bind="foreach: users">
+    <div class="row todorow visible-sm visible-md visible-lg" data-bind="foreach: users">
         <div class="col-sm-2">
-      <h3 data-bind="text: name"></h3>
-            <ul class="list-group" data-bind="foreach: entriesForDate($root.selectedDate())">
+            <div class="tmp">
+                <ul class="todo list-group" data-bind="foreach: entriesForDate($root.selectedDate(),1)">
+                    <li class="list-group-item">
+                        <div data-bind="click: $parent.openItem">
+                            <p data-bind="text: title" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row mainrow" data-bind="foreach: users">
+        <div class="col-sm-2">
+            <h3 data-bind="text: name"></h3>
+            <ul class="list-group todo hidden-sm hidden-md hidden-lg" data-bind="foreach: entriesForDate($root.selectedDate(),1)">
+                <li class="list-group-item">
+                    <div data-bind="click: $parent.openItem">
+                        <p data-bind="text: title" />
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-group" data-bind="foreach: entriesForDate($root.selectedDate(),0)">
                 <li class="list-group-item">
                     <div class="calendar-item" data-bind="click: $parent.openItem">
                         <p data-bind="text: title" />
@@ -20,7 +42,7 @@
                 </li>
             </ul>
             <button class="btn btn-xs" data-bind="click: add">add</button>
-      </div>
+        </div>
     </div>
 
 </div>
