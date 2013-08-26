@@ -148,8 +148,10 @@
     <Content Include="App\main\main.js" />
     <Content Include="App\main\main.html" />
     <Content Include="App\services\auth.js" />
+    <Content Include="App\services\azuremobile.js" />
     <Content Include="App\services\googleauth.js" />
     <Content Include="App\services\mockdata.js" />
+    <Content Include="App\services\azuremobile.spec.js" />
     <Content Include="App\specs\auth.spec.js" />
     <Content Include="App\specs\calendar.spec.js" />
     <Content Include="App\specs\settings.spec.js" />

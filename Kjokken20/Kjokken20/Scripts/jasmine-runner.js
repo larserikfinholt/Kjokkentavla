@@ -53,6 +53,7 @@ require(['jquery', 'jasmine-html'], function ($, jasmine) {
 
     var specs = [];
     specs.push('/app/user/user.spec.js');
+    specs.push('/app/services/azuremobile.spec.js');
     //specs.push('/app/specs/auth.spec.js');
     //specs.push('/app/specs/settings.spec.js');
     //specs.push('/app/specs/calendar.spec.js');
