@@ -1,0 +1,90 @@
+﻿<section>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form">
+
+                <p class="lead">Settings</p>
+
+                <div data-bind="visible: isNotGoogleAuthenticated()">
+                    
+                    <p>Kjøkkentavla needs to be able to read entires from your google calendar. Please press the button below to give Kjøkkentavala access to your calendars. </p>
+
+                    <button class="btn btn-lg btn-primary" data-bind="click: grantGoogleAccess">Grant access to Google calendars</button>
+                    <div data-bind="text: settings().familyCalendar"></div>
+                    <div data-bind="text: settings().familyName"></div>
+                </div>
+                <div data-bind="visible: !isNotGoogleAuthenticated()">
+
+                    <!-- family name input-->
+                    <div class="form-group">
+                        <label for="familyName" class="col-lg-2 control-label">Family name</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" id="familyName" placeholder="family name" data-bind="value: settings().familyName">
+                        </div>
+                    </div>
+                    <!-- family calendar input-->
+                    <div class="form-group">
+                        <label for="familyCalendar" class="col-lg-2 control-label">Family calendar</label>
+                        <div class="col-lg-10">
+                            <select id="familyCalendar" data-bind="options: availibleCalendars, optionsText: 'name', optionsValue: 'value', value: settings().familyCalendar, optionsCaption: 'Use family calendar'"></select>
+                            <!--<input type="text" class="form-control" id="familyCalendar" placeholder="family name" data-bind="value: settings().familyName">-->
+                        </div>
+                    </div>
+                    <!-- users select -->
+                    <div class="control-group">
+                        <label class="control-label">Users</label>
+                        <div class="controls">
+                            <div class="_well">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>email</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: settings().users">
+                                        <tr>
+                                            <td><span data-bind="text: name, uniqueName: true" /></td>
+                                            <td>
+                                                <select data-bind="options: $root.availibleCalendars, optionsText: 'name', optionsValue: 'value', value: calendar, optionsCaption: 'Select calendar...'"></select>
+
+                                                <!--<span data-bind="text: calendar, uniqueName: true" />-->
+                                            </td>
+                                            <td><a href="#" data-bind="click: $root.editUser">Edit</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="btn-toolbar">
+                                    <button class="btn" data-bind="click: newUser">New User</button>
+                                </div>
+
+                            </div>
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <!-- full-name input-->
+                    <!--<div class="control-group">
+                        <label class="control-label">Primary calendar</label>
+                        <div class="controls">
+                            <input name="familyName" type="text" placeholder="deafult calendar"
+                                   class="input-xlarge" data-bind="value: settings.mainCalendar">
+                            <p class="help-block">This is where all common events and tasks are stored</p>
+                        </div>
+                    </div>-->
+
+                    <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-success" data-bind="click: saveSettings">Save settings</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>

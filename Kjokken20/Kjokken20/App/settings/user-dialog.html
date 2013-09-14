@@ -1,0 +1,26 @@
+﻿<div class="messageBox">
+    <div class="modal-header">
+        <h3>Edit user <span data-bind="value: selectedItem.name"></span></h3>
+    </div>
+    <div class="modal-body">
+        
+        <form role="form" data-bind="submit: ok">
+            <p data-bind="text: selectedItem.id"></p>
+            <div class="form-group">
+                <label for="title">Name</label>
+                <input type="text" data-bind="value: selectedItem.name" class="form-control" id="form-name" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label for="start">Calendar</label>
+                <input type="email" data-bind="value: selectedItem.calendar" class="form-control" id="form-calendara" placeholder="calendar">
+            </div>
+        </form>
+
+        <div class="row">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" data-bind="click: remove, visible: true">Delete</button>
+        <button class="btn " data-bind="click: cancel">Close</button>
+    </div>
+</div>
