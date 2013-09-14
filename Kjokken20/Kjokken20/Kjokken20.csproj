@@ -137,24 +137,33 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\async.js" />
     <Content Include="App\calendarService\calendarservice.js" />
     <Content Include="App\calendar\calendar-dialog.html" />
     <Content Include="App\calendar\calendar-dialog.js" />
     <Content Include="App\calendar\dummydata.js" />
     <Content Include="App\calendar\todo-dialog.html" />
     <Content Include="App\calendar\todo-dialog.js" />
+    <Content Include="App\goog.js" />
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />
     <Content Include="App\main\main.js" />
     <Content Include="App\main\main.html" />
+    <Content Include="App\propertyParser.js" />
     <Content Include="App\services\auth.js" />
     <Content Include="App\services\azuremobile.js" />
+    <Content Include="App\services\googlecalendar.spec.js" />
+    <Content Include="App\services\googlecalendar.js" />
     <Content Include="App\services\googleauth.js" />
     <Content Include="App\services\mockdata.js" />
     <Content Include="App\services\azuremobile.spec.js" />
+    <Content Include="App\settings\settings.html" />
+    <Content Include="App\settings\settings.js" />
+    <Content Include="App\settings\user-dialog.html" />
+    <Content Include="App\settings\user-dialog.js" />
     <Content Include="App\specs\auth.spec.js" />
     <Content Include="App\specs\calendar.spec.js" />
-    <Content Include="App\specs\settings.spec.js" />
+    <Content Include="App\settings\settings.spec.js" />
     <Content Include="App\user\user.html" />
     <Content Include="App\user\user.js" />
     <Content Include="App\user\user.spec.js" />
@@ -222,6 +231,9 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\knockout-2.3.0.debug.js" />
     <Content Include="Scripts\knockout-2.3.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\mobileservices.web-1.0.0.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\r.js" />

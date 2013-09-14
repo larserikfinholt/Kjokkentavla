@@ -18,6 +18,7 @@
     @Styles.Render("~/Content/css")
 
     <script type="text/javascript">
+
         if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
             var msViewportStyle = document.createElement("style");
             var mq = "@@-ms-viewport{width:auto!important}";
@@ -42,12 +43,12 @@
     }
 
     <!-- Uncomment below to use fake auth and mock data -->
-     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+     @*<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>*@
     <script>
-        window.runMode = "Google";
-        if (window.runMode != "Google") { console.log("Fake authentication"); handleClientLoad(); }
+        window.runMode = "AzureGoogle";//"Google";//"Fake";
+        if (window.runMode == "Fake") { console.log("Fake authentication"); handleClientLoad(); }
     </script>
-    <script src="https://kjokken.azure-mobile.net/client/MobileServices.Web-1.0.0.min.js"></script>
+
 
 
 </body>

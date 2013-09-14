@@ -76,6 +76,11 @@ margin-bottom:0px;
     position:relative;
 }
 
+#loginView {
+    position:absolute;
+    top:-20px;
+    z-index:9999;
+}
 
 @media (max-width: 979px) {
     .page-host {

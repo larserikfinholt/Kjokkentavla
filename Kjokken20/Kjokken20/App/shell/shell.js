@@ -11,18 +11,16 @@
         activate: function () {
             router.map([
                 { route: '', title:'Main', moduleId: 'main/main', nav: true },
-                { route: 'flickr', moduleId: 'viewmodels/flickr', nav: true }
+                { route: 'flickr', moduleId: 'viewmodels/flickr', nav: true },
+            { route: 'settings', moduleId: 'settings/settings', nav: true }
             ]).buildNavigationModel();
             
-            app.trigger("settings:loaded", {});
-
             return router.activate();
         }
     };
 
-    app.on("authentication:success", function (authResult) {
-        log("Authentication sucess", authResult, true);
-
+    app.on("login:success", function (authResult) {
+        console.log("Authentication sucess - removing login screen", authResult, true);
         shell.loggedIn(true);
     });
 

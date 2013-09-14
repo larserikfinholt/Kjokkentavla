@@ -3,10 +3,11 @@
     var users = [];
     var todos = [];
 
-    function addUser(id, name) {
+    function addUser(id, name, calendar) {
         var user = {};
         user.id = id;
         user.name = name;
+        user.calendar = calendar;
         users.push(user);
     };
 
@@ -19,11 +20,11 @@
     };
 
 
-    addUser(0, 'Lars Erik');
-    addUser(1, 'Camilla');
-    addUser(2, 'Markus');
-    addUser(3, 'Sigrid');
-    addUser(4, 'Ingvild');
+    addUser(0, 'Lars Erik', 'lars.erik.finholt@gmail.com');
+    addUser(1, 'Camilla','');
+    addUser(2, 'Markus', '');
+    addUser(3, 'Sigrid', '');
+    addUser(4, 'Ingvild', '');
 
     addTodo(0, 'Gå tur med Buster', [[2,3], [3,2], [2,3], [2,3], [2,3], [], []]);
     addTodo(1, 'Lese 15 min', [[4], [4], [4], [4], [4], [4], [4]]);
@@ -34,6 +35,8 @@
 
 
     return {
+        id:1,
+        familyName: 'finholt',
         users: users,
         todos: todos
     }

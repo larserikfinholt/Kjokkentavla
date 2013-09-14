@@ -7,16 +7,17 @@
     paths: {
         jquery: '/scripts/jquery-1.9.1',
         'knockout': '/scripts/knockout-2.3.0',
-        'knockout.mapping': '/scripts/knockout.mapping-latest.debug',
-        //'mockJSON': '/scripts/mockjson',
-        //'mockajax': '/scripts/mockajax',
+        'komap': '../Scripts/knockout.mapping-latest',
         'jasmine': '/scripts/jasmine/jasmine',
         'jasmine-html': '/scripts/jasmine/jasmine-html',
         'text': '../Scripts/text',
         'durandal': '../Scripts/durandal',
         'plugins': '../Scripts/durandal/plugins',
         'transitions': '../Scripts/durandal/transitions',
-        'underscore': '../Scripts/underscore'
+        'underscore': '../Scripts/underscore',
+        'azurelib': '../Scripts/mobileservices.web-1.0.0.min'
+
+
 
     },
     shim: {
@@ -37,6 +38,16 @@
     }
 });
 
+define('gapi', ['async!https://apis.google.com/js/client.js!onload'],
+    function () {
+        console.log('gapi loaded');
+        // Step 2: Reference the API key (https://code.google.com/apis/console/?pli=1#project:910460127884:access)
+        var apiKey = 'AIzaSyANE4eQbcntAG7wHWAv8YLBMcILGVeleSQ';
+        gapi.client.setApiKey(apiKey);
+        return gapi.client;
+    }
+);
+
 
 require(['jquery', 'jasmine-html'], function ($, jasmine) {
 
@@ -54,6 +65,8 @@ require(['jquery', 'jasmine-html'], function ($, jasmine) {
     var specs = [];
     specs.push('/app/user/user.spec.js');
     specs.push('/app/services/azuremobile.spec.js');
+    specs.push('/app/settings/settings.spec.js');
+    specs.push('/app/services/googlecalendar.spec.js');
     //specs.push('/app/specs/auth.spec.js');
     //specs.push('/app/specs/settings.spec.js');
     //specs.push('/app/specs/calendar.spec.js');
