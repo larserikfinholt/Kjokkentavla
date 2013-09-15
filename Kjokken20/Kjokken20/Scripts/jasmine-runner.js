@@ -63,6 +63,7 @@ require(['jquery', 'jasmine-html'], function ($, jasmine) {
     };
 
     var specs = [];
+    specs.push('/app/main/main.spec.js');
     specs.push('/app/user/user.spec.js');
     specs.push('/app/services/azuremobile.spec.js');
     specs.push('/app/settings/settings.spec.js');

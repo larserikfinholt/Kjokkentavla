@@ -3,7 +3,14 @@
         <div class="col-sm-2 col-sm-offset-8">
         </div>
         <div class="col-sm-2 ">
-            <p><span data-bind="textualDate: selectedDate"></span>
+            <p>
+                <!-- ko if: showDayView -->
+                <span data-bind="textualDate: selectedDate, click:toggleView"></span>
+                <!-- /ko -->
+                <!-- ko ifnot: showDayView -->
+                <span data-bind="text: selectedWeek()"></span>
+                <span data-bind="click: toggleView">Uke <span data-bind="text: selectedWeek().week()"></span></span>
+                <!-- /ko -->
                 <img src="http://symbol.yr.no/grafikk/sym/b48/01d.png" width="48" height="48" alt="Klarvær">
             </p>
             <button class="btn btn-lg" data-bind="click: changeDate" data-direction="prev"><<</button>
@@ -23,9 +30,11 @@
             </div>
         </div>
     </div>
+    <!-- ko if: showDayView -->
     <div class="row mainrow" data-bind="foreach: users">
         <div class="col-sm-2">
             <h3 data-bind="text: name"></h3>
+            <span data-bind="text: entries().length"></span>
             <ul class="list-group todo hidden-sm hidden-md hidden-lg" data-bind="foreach: entriesForDate($root.selectedDate(),1)">
                 <li class="list-group-item">
                     <div data-bind="click: $parent.openItem">
@@ -41,8 +50,35 @@
                     </div>
                 </li>
             </ul>
+            <!--<ul class="list-group" data-bind="foreach: entries">
+                <li class="list-group-item" style="background-color:orange;">
+                    <div class="calendar-item" data-bind="click: $parent.openItem">
+                        <p data-bind="text: title" />
+                        <p data-bind="textualDate: start" />
+                    </div>
+                </li>
+            </ul>-->
             <button class="btn btn-xs" data-bind="click: add">add</button>
         </div>
     </div>
+    <!-- /ko -->
+    <!-- ko ifnot: showDayView -->
+    <div class="row mainrow" data-bind="foreach: days">
+        <div class="col-sm-2">
+            <h3 data-bind="text: $data.format('dddd')" style="display:inline;"></h3>
+            <small class="dato" data-bind="text: $data.format('D MMM')"></small>
+            <div data-bind="foreach: $root.users">
+                <ul class="list-group" data-bind="foreach: entriesForDate($parentContext.$data, 0)">
+                    <li class="list-group-item">
+                        <div class="calendar-item" data-bind="click: $parent.openItem">
+                            <p data-bind="text: title" />
+                            <p data-bind="text: start.format('HH:mm')" />
+                        </div>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+            <!-- /ko -->
 
-</div>
+        </div>

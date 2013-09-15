@@ -4,16 +4,22 @@
         var self = this;
         this.name = init.name;
         this.id = init.id;
+        this.calendar = init.calendar;
         this.entries = ko.observableArray([]);
 
         this.addCalendarEntry = function (entry) {
             self.entries.push(entry);
         };
-        this.entriesForDate = function (date, type) {
-
+        this.entriesForDate = function (date, type){//, index) {
+            //var tmp = 0
+            //if (index) {
+            //    tmp = index();
+            //    console.log(date, tmp);
+            //}
             return ko.utils.arrayFilter(this.entries(), function (item) {
-                var d = new Date(item.start);
-                return d.getDate() == date.getDate() &&
+                //var d = moment(item.start).add(tmp, 'days');
+                var d = moment(item.start);//.add(tmp, 'days');
+                return d.isSame(date, 'day') &&
                     item.type== type;
             });
         };

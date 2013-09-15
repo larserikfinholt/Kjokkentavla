@@ -149,6 +149,7 @@
     <Content Include="App\main.js" />
     <Content Include="App\main\main.js" />
     <Content Include="App\main\main.html" />
+    <Content Include="App\main\main.spec.js" />
     <Content Include="App\propertyParser.js" />
     <Content Include="App\services\auth.js" />
     <Content Include="App\services\azuremobile.js" />

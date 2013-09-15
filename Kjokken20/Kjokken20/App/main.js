@@ -33,6 +33,7 @@ define('gapi', ['async!https://apis.google.com/js/client.js!onload'],
 );
 
 
+
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/auth'], function (system, app, viewLocator, auth) {
     //>>excludeStart("build", true);
     system.debug(true);

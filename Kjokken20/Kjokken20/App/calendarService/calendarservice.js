@@ -1,4 +1,4 @@
-﻿define(['plugins/http', 'durandal/app', 'knockout', 'underscore','calendar/dummydata'], function (http, app, ko,_, dummydata) {
+﻿define(['plugins/http', 'durandal/app', 'knockout', 'underscore','calendar/dummydata', 'services/googleCalendar'], function (http, app, ko,_, dummydata, googleCalendar) {
 
     var CalendarEntry = function (init) {
         var self = this;
@@ -8,7 +8,31 @@
         this.id = init.id;
         this.type = init.type;
 
+
     };
+
+    function googleData(user) {
+        var now = new Date();
+        if (user.calendar) {
+            //console.log('start loading from calendar ' + user.calendar, user);
+            googleCalendar.loadCalendar({ calendarId: user.calendar, timeMin: '2013-09-13T21:32:53.699Z', timeMax:'2014-09-14T21:32:53.699Z', singleEvents:true }).then(function (result) {
+
+                if (result != undefined) {
+                    _.each(result, function (item) {
+                        var toAdd = new CalendarEntry({ id: item.etag, title: item.summary, start: moment(item.start.dateTime), type:0 });
+                        user.addCalendarEntry(toAdd);
+
+                    });
+                } else {
+                    //console.log('no results from', user);
+                }
+
+            });
+        }
+
+    }
+
+
 
     function randomData(user) {
         var id = 0;
@@ -58,8 +82,8 @@
         loadForUser: function (user) {
 
             //randomData(user);
-            dummyData(user);
-
+            //dummyData(user);
+            googleData(user);
 
 
         },
@@ -70,7 +94,7 @@
             } else {
                 console.log("updated");
                 item.id = 99;
-                user.entries.push(item);
+                user.addCalendarEntry(item);
             }
         },
         getEmpty: function () {
