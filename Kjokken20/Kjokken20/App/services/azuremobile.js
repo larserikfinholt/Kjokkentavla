@@ -10,7 +10,7 @@ define(['durandal/system', 'durandal/app', 'azurelib'],
         var loadSettings = function () {
 
             return client.getTable("Settings").read();
-        }
+        } 
 
 
         var updateSettings = function (settings) {
