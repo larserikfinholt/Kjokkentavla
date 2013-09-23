@@ -1,4 +1,4 @@
-﻿define(['plugins/http', 'durandal/app', 'knockout', 'underscore','calendar/dummydata', 'services/googleCalendar'], function (http, app, ko,_, dummydata, googleCalendar) {
+﻿define(['plugins/http', 'durandal/app', 'knockout', 'underscore','calendar/dummydata', 'services/googleCalendar', 'addons/manager'], function (http, app, ko,_, dummydata, googleCalendar, addonManager) {
 
     var CalendarEntry = function (init) {
         var self = this;
@@ -29,6 +29,24 @@
 
             });
         }
+    }
+
+    function addonData(user) {
+
+        addonManager.loadItems({ userId: user.userId }).then(function (result) {
+
+            if (result != undefined) {
+                _.each(result, function (item) {
+                    var toAdd = new CalendarEntry({ id: item.id, title: item.summary, start: moment(item.start.dateTime), type: item.addonType });
+                    user.addCalendarEntry(toAdd);
+
+                });
+            } 
+
+
+
+        });
+
 
     }
 
@@ -84,7 +102,7 @@
             //randomData(user);
             //dummyData(user);
             googleData(user);
-
+            addonData(user);
 
         },
         updateCalendarEntry: function (user, item) {

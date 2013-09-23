@@ -98,7 +98,9 @@
     };
 
     app.on('googleauth:success', function (authResult) {
+        console.log("Got 'googleauth:success' starting azure login process...", authResult);
         vm.isNotGoogleAuthenticated(false);
+        azureService.login(authResult);
     });
     app.on("settings:updated", function (settings) {
         vm.saved = settings;
@@ -107,7 +109,7 @@
 
     app.on("settings:loaded", function (settings) {
         vm.saved = settings;
-        vm.grantGoogleAccess();
+        //vm.grantGoogleAccess();
     });
 
     return vm;

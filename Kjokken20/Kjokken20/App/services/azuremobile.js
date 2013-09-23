@@ -12,16 +12,40 @@ define(['durandal/system', 'durandal/app', 'azurelib'],
             return client.getTable("Settings").read();
         }
 
+
         var updateSettings = function (settings) {
 
             return client.getTable("Settings").update(settings);
 
         }
 
-        var login = function () {
 
-            client.login("google").then(function (user) {
-                console.log("login success", user);
+        var loadAddonSettings = function () {
+
+            console.log("loading addonsettings....");
+
+            return client.getTable("AddonSettings").read();
+        }
+
+
+
+
+        var updateAddonSettings = function (settings) {
+
+            return client.getTable("AddonSettings").update(settings);
+
+        }
+        var loadAddonData = function () {
+
+            return client.getTable("AddonData").read();
+        }
+
+
+        var login = function (googleAuthResult) {
+
+            console.log('Azure client doing google login with token', googleAuthResult.access_token);
+            client.login("google",  {"access_token": googleAuthResult.access_token}).then(function (user) {
+                console.log("Azure client login success for user", user);
                 app.trigger("login:success", user);
                 loadSettings().done(function (settings) {
                     console.log("settings loaded from azure", settings);
@@ -51,7 +75,11 @@ define(['durandal/system', 'durandal/app', 'azurelib'],
             client: client,
             login: login,
             loadSettings: loadSettings,
-            updateSettings: updateSettings
+            updateSettings: updateSettings,
+            updateAddonSettings: updateAddonSettings,
+            loadAddonSettings: loadAddonSettings,
+            loadAddonData: loadAddonData,
+
 
         }
 

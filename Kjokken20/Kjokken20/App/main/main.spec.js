@@ -13,7 +13,7 @@
 
             target.changeWeek(1);
             expect(target.selectedWeek().format('dddd')).toBe('Monday');
-            expect(target.days().length).toBe(7);
+            expect(target.days().length).toBe(6);
             console.log(target.days());
             
             

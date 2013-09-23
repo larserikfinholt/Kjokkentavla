@@ -1,7 +1,7 @@
 ﻿define(["services/azuremobile"], function (target) {
     describe("Azure mobile services", function () {
 
-        it("should be possible to login", function () {
+        xit("should be possible to login", function () {
             var client = target.client,
                 flag = "-";
 
@@ -125,6 +125,94 @@
 
         });
 
+
+        it("should return addonsettings if users is logged in", function () {
+            var client = target.client,
+                         flag = '-';
+
+            if (client.currentUser != null) {
+                runs(function () {
+                    target.loadAddonSettings().done(
+                        function (d) {
+                            console.log("Settings returned:", d);
+                            flag = "ok";
+                        },
+                        function (err) {
+                            console.log("err:", err)
+                            flag = "error" + err;
+                        }
+                        );
+                });
+
+                waitsFor(function () {
+                    return flag != "-";
+                }, 2000);
+
+                runs(function () {
+                    expect(flag).toBe("ok");
+
+                });
+
+            }
+
+        });
+        it("should be able to update addonsettings", function () {
+
+            var client = target.client,
+                         flag = '-';
+
+
+            if (sessionStorage.loggedInUser) {
+                client.currentUser = JSON.parse(sessionStorage.loggedInUser);
+            } else {
+                console.error("The user should be stored in sessionStorage, something is wrong", sessionStorage);
+            }
+
+            expect(client.currentUser).not.toBe(null);
+
+            var timestamp = new Date().getMilliseconds();
+
+            if (client.currentUser != null) {
+                runs(function () {
+                    target.loadAddonSettings().done(function (results) {
+                        if (results.length > 0) {
+                            var orginal = _.findWhere(results, { appName: 'test' });
+                            var str = moment().format('ss');
+                            orginal.lastModified = str;
+                            target.updateAddonSettings(orginal).done(
+                                function (d) {
+                                    expect(d.lastModified).toBe(str);
+                                    console.log("read back", d);
+                                    flag = "ok";
+                                },
+                                function (err) {
+                                    console.log("error updating:", err)
+                                    flag = "error";
+                                }
+                                );
+                        } else {
+                            console.log("nothing to test on.,");
+                            client.getTable("AddonSettings").insert({ appName: 'test', config: { test: 123, jalla: 'jalla' } }).then(function(){
+                                console.log("added dummydata...");
+                            });
+                        }
+                    });
+                });
+
+                waitsFor(function () {
+                    return flag != "-";
+                }, 2000);
+
+                runs(function () {
+                    expect(flag).toBe("ok");
+
+                });
+
+            }
+
+
+
+        });
 
         xit("should be possible to add an item", function () {
             var client = target.client,

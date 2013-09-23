@@ -59,7 +59,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/aut
         //Show the app by setting the root view model for our application with a transition.
         app.setRoot('shell/shell', 'entrance');
 
-        window.auth.login();
+        //window.auth.login();
     });
 
 

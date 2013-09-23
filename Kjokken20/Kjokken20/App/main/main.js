@@ -20,6 +20,9 @@
         addUser: function (user) {
             this.users.push(user);
         },
+        clearAll: function() {
+            this.users.removeAll();
+        },
         loadCalendars: function () {
             console.log('loading calendars for all users');
             _.each(this.users(), function (user) {
@@ -59,18 +62,19 @@
 
     app.on("settings:loaded", function (settings) {
         console.log("settings loaded", settings);
-
+        vm.clearAll();
         _.each(settings.users, function (user) {
             vm.addUser(new usermodule.User(user));
         });
+        vm.loadCalendars();
     });
 
-    app.on('googleauth:success', function (authResult) {
-        vm.loadCalendars();
+    app.on('login:success', function (authResult) {
     });
 
     app.on("settings:updated", function (settings) {
         console.log("settings updated", settings);
+        vm.clearAll();
         vm.users.length = 0;
         _.each(settings.users, function (user) {
             vm.addUser(new usermodule.User(user));

@@ -4,11 +4,22 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi'],
         if (window.superhack == undefined) {
 
             var scopes = ['https://www.googleapis.com/auth/plus.me', ' https://www.googleapis.com/auth/calendar'];
-            var clientId = '910460127884.apps.googleusercontent.com';
+            var clientId = '910460127884-r0d4g4h94h5j1lt8oab9h9o9mfgahd71.apps.googleusercontent.com';
             if (window.location.href.indexOf("localhost") > 0) { clientId = '910460127884.apps.googleusercontent.com'; }
 
             console.log('loaded googleCalendar module');
 
+            window.setTimeout(function () {
+
+                if (!window.superhack.isAuthorized) {
+
+                    console.log('Not authenticated yet. Trying to authorize automatic... ', vm);
+                    window.superhack.grantAccessToCalendars(true);
+                } else {
+                    console.log('Already authenticated....');
+                }
+
+            }, 2000);
 
             var vm = {
                 isAuthorized: false,
@@ -74,11 +85,14 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi'],
                     var self = this;
                     var dfd = new jQuery.Deferred();
 
-
+                    console.log("GrantAccessToCalendars - calling gapi.auth.authorize. Immediate:", noPopup);
                     gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: noPopup }, function (authResult) {
 
                         if (authResult && !authResult.error) {
-                            console.log('gapi.auth.authorize success', authResult.accessToken);
+                            console.log('gapi.auth.authorize success', authResult.access_token);
+                            if (authResult.access_token == undefined) {
+                                console.error("Empty accesstoken from gapi.auth.auhorize", authResult);
+                            }
                             self.isAuthorized = true;
                             app.trigger('googleauth:success', authResult);
                             dfd.resolve(true);
@@ -126,6 +140,14 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi'],
             //vm.grantAccessToCalendars(true);
 
             window.superhack = vm;
+
+            window.fallbackAuth = function () {
+                //alert('this is just temporary....');
+                //azureMobile.login();
+                window.superhack.grantAccessToCalendars(true);
+            }
+
+
 
             return vm;
 

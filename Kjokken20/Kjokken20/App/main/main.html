@@ -3,13 +3,12 @@
         <div class="col-sm-2 col-sm-offset-8">
         </div>
         <div class="col-sm-2 ">
-            <p>
+            <p data-bind="click:toggleView">
                 <!-- ko if: showDayView -->
-                <span data-bind="textualDate: selectedDate, click:toggleView"></span>
+                <span data-bind="text: moment(selectedDate()).format('dddd D MMM')"></span>
                 <!-- /ko -->
                 <!-- ko ifnot: showDayView -->
-                <span data-bind="text: selectedWeek()"></span>
-                <span data-bind="click: toggleView">Uke <span data-bind="text: selectedWeek().week()"></span></span>
+                <span >Uke <span data-bind="text: selectedWeek().week()"></span></span>
                 <!-- /ko -->
                 <img src="http://symbol.yr.no/grafikk/sym/b48/01d.png" width="48" height="48" alt="Klarvær">
             </p>
@@ -46,7 +45,7 @@
                 <li class="list-group-item">
                     <div class="calendar-item" data-bind="click: $parent.openItem">
                         <p data-bind="text: title" />
-                        <p data-bind="textualDate: start" />
+                        <p data-bind="text: start.format('HH:mm')" />
                     </div>
                 </li>
             </ul>
