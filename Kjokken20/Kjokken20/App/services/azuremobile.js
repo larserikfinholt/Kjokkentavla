@@ -1,5 +1,5 @@
-define(['durandal/system', 'durandal/app', 'azurelib'],
-    function (system, app, azurelib) {
+define(['durandal/system', 'durandal/app', 'azurelib', 'logf'],
+    function (system, app, azurelib, logf) {
 
 
         var client = new WindowsAzure.MobileServiceClient(
@@ -22,7 +22,7 @@ define(['durandal/system', 'durandal/app', 'azurelib'],
 
         var loadAddonSettings = function () {
 
-            console.log("loading addonsettings....");
+            logf.debug("loading addonsettings....");
 
             return client.getTable("AddonSettings").read();
         }
@@ -43,12 +43,12 @@ define(['durandal/system', 'durandal/app', 'azurelib'],
 
         var login = function (googleAuthResult) {
 
-            console.log('Azure client doing google login with token', googleAuthResult.access_token);
+            logf.auth('Azure client doing google login with token', googleAuthResult.access_token);
             client.login("google",  {"access_token": googleAuthResult.access_token}).then(function (user) {
-                console.log("Azure client login success for user", user);
+                logf.auth("Azure client login success for user", user);
                 app.trigger("login:success", user);
                 loadSettings().done(function (settings) {
-                    console.log("settings loaded from azure", settings);
+                    logf.debug("settings loaded from azure", settings);
                     if (settings.familyName == undefined) {
                         settings.familyName = '';
                     }

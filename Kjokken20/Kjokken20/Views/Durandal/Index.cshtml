@@ -33,7 +33,7 @@
     </div> 
 
     @Scripts.Render("~/Scripts/vendor")
-    @if (HttpContext.Current.IsDebuggingEnabled)
+    @if (true || HttpContext.Current.IsDebuggingEnabled)
     {
         <script type="text/javascript" src="~/Scripts/require.js" data-main="App/main"></script>
     }

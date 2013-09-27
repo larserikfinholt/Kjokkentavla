@@ -147,6 +147,7 @@
     <Content Include="App\calendar\dummydata.js" />
     <Content Include="App\calendar\todo-dialog.html" />
     <Content Include="App\calendar\todo-dialog.js" />
+    <Content Include="App\logf.js" />
     <Content Include="App\goog.js" />
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />

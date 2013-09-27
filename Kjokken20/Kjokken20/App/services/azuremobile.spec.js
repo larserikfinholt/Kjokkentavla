@@ -1,38 +1,51 @@
 ﻿define(["services/azuremobile"], function (target) {
     describe("Azure mobile services", function () {
 
-        xit("should be possible to login", function () {
+        beforeEach(function () {
+            if (sessionStorage.loggedInUser) {
+                target.client.currentUser = JSON.parse(sessionStorage.loggedInUser);
+            }
+        });
+
+        it("should be possible to login", function () {
             var client = target.client,
                 flag = "-";
 
             console.log("beore:", client.currentUser);
 
-            runs(function () {
-                client.login("google").then(function (d) {
-                    sessionStorage.loggedInUser = JSON.stringify(client.currentUser);
-                    console.log("ok", d, client);
-                    console.log("after:", client.currentUser);
-                    expect(client.currentUser.userId).toBe("Google:107478337081053732571");
-                    flag = "ok";
-                }, function (error) {
-                    console.log("err:", error);
-                    flag = "error";
+            if (sessionStorage.loggedInUser) {
+                client.currentUser = JSON.parse(sessionStorage.loggedInUser);
+                expect(client.currentUser).not.toBe(null);
+            } else {
+                console.log("sessionStorage is empty - doing a login");
+
+                runs(function () {
+                    client.login("google").then(function (d) {
+                        sessionStorage.loggedInUser = JSON.stringify(client.currentUser);
+                        console.log("ok", d, client);
+                        console.log("after:", client.currentUser);
+                        expect(client.currentUser.userId).toBe("Google:107478337081053732571");
+                        flag = "ok";
+                    }, function (error) {
+                        console.log("err:", error);
+                        flag = "error";
+                    });
                 });
-            });
 
-            waitsFor(function () {
-                return flag != "-";
-            }, 20000);
+                waitsFor(function () {
+                    return flag != "-";
+                }, 20000);
 
-            runs(function () {
-                expect(flag).toBe("ok");
+                runs(function () {
+                    expect(flag).toBe("ok");
 
-            });
+                });
+            }
 
         });
 
 
-        xit("should be possible to logout", function () {
+        it("should be possible to logout", function () {
             var client = target.client,
                 flag = "-";
 
@@ -80,12 +93,6 @@
             var client = target.client,
                          flag = '-';
 
-
-            if (sessionStorage.loggedInUser) {
-                client.currentUser = JSON.parse(sessionStorage.loggedInUser);
-            } else {
-                console.error("The user should be stored in sessionStorage, something is wrong", sessionStorage);
-            }
 
             expect(client.currentUser).not.toBe(null);
 
@@ -161,15 +168,6 @@
             var client = target.client,
                          flag = '-';
 
-
-            if (sessionStorage.loggedInUser) {
-                client.currentUser = JSON.parse(sessionStorage.loggedInUser);
-            } else {
-                console.error("The user should be stored in sessionStorage, something is wrong", sessionStorage);
-            }
-
-            expect(client.currentUser).not.toBe(null);
-
             var timestamp = new Date().getMilliseconds();
 
             if (client.currentUser != null) {
@@ -192,8 +190,8 @@
                                 );
                         } else {
                             console.log("nothing to test on.,");
-                            client.getTable("AddonSettings").insert({ appName: 'test', config: { test: 123, jalla: 'jalla' } }).then(function(){
-                                console.log("added dummydata...");
+                            client.getTable("AddonSettings").insert({ appName: 'test', config: { test: 123, jalla: 'jalla' } }).then(function(dum){
+                                console.log("added dummydata...",dum);
                             });
                         }
                     });

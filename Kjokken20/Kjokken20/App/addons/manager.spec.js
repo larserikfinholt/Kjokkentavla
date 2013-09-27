@@ -1,15 +1,21 @@
-﻿define(["addons/manager"], function (target) {
+﻿define(["addons/manager", 'services/azuremobile'], function (target, azuremobile) {
     describe("Addon Manger", function () {
 
-        it('should load configurations for all addons', function () {
+        beforeEach(function () {
+            if (sessionStorage.loggedInUser) {
+                azuremobile.client.currentUser = JSON.parse(sessionStorage.loggedInUser);
+            } else {
+                console.error("Not able to get user from session storage");
+            }
+        });
+
+
+        it('should load configurations for all addons on init and send "addonsettings:loaded"', function () {
 
             var flag = "-";
 
             runs(function () {
-                target.loadSettings().then(function (d) {
-                    expect(d).toBe(true);
-                    flag = "ok";
-                });
+                target.init();
 
             }, function (error) {
                 console.log("err:", error);
@@ -17,11 +23,11 @@
             });
 
             waitsFor(function () {
-                return flag != "-";
+                return target.settings;
             }, 2000);
 
             runs(function () {
-                expect(flag).toBe("ok");
+                expect(target.settings.length).toBeGreaterThan(1);
             });
 
         });

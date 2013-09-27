@@ -1,22 +1,20 @@
-﻿define(['addons/readbook/readbook'], function () {
+﻿define(['durandal/app','services/azuremobile', 'addons/readbook/readbook'], function (app, azuremobile, readbook) {
 
     var manager = {};
-    var addons =
 
-    manager.init = function () {
+    manager.settings = undefined;
 
+    manager.init = function (settings) {
+        // init all apps
+        readbook.init(_.settings.findWhere({ appName: 'test' }));
+        manager.allSettings = settings;
+    }
 
-    };
-
-    manager.loadItems = function (user) {
-
-        if (user.userId > 0) {
-
-
-        } else {
-            console.error("Invalid user", user);
-        }
-
+    manager.loadSettings = function () {
+        // function not used, will be loaded together with main settings
+        azuremobile.loadAddonSettings().done(function (results) {
+            manager.init(results);
+        });
     };
 
 

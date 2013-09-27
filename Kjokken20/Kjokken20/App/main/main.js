@@ -1,4 +1,4 @@
-﻿define(['plugins/http', 'durandal/app', 'knockout', 'user/user', 'underscore', 'calendar/dummydata', 'settings/settings'], function (http, app, ko, usermodule, _, dummydata, settings) {
+﻿define(['plugins/http', 'durandal/app', 'knockout', 'user/user', 'underscore', 'calendar/dummydata', 'settings/settings', 'addons/manager', 'logf'], function (http, app, ko, usermodule, _, dummydata, settings, addonManager, logf) {
 
     moment.lang('en', {
         week: {
@@ -17,17 +17,25 @@
         toggleView: function () {
             this.showDayView(!this.showDayView());
         },
+        init: function (settings) {
+            var self = this;
+            // Remove all users
+            self.clearAll();
+            // Add users bacck
+            _.each(settings.users, function (user) {
+                self.addUser(new usermodule.User(user));
+            });
+            // Load calendars
+            logf.debug('loading calendar items for all users');
+            _.each(this.users(), function (user) {
+                user.loadCalendar();
+            });
+        },
         addUser: function (user) {
             this.users.push(user);
         },
         clearAll: function() {
             this.users.removeAll();
-        },
-        loadCalendars: function () {
-            console.log('loading calendars for all users');
-            _.each(this.users(), function (user) {
-                user.loadCalendar();
-            });
         },
         changeDate: function (data, event) {
 
@@ -61,26 +69,25 @@
     vm.changeWeek(0);
 
     app.on("settings:loaded", function (settings) {
-        console.log("settings loaded", settings);
-        vm.clearAll();
-        _.each(settings.users, function (user) {
-            vm.addUser(new usermodule.User(user));
-        });
-        vm.loadCalendars();
+        logf.event("settings loaded", settings);
+        vm.init(settings);
+        addonManager.init(settings.addonSettings);
     });
 
     app.on('login:success', function (authResult) {
+        logf.event('login:success');
     });
 
     app.on("settings:updated", function (settings) {
-        console.log("settings updated", settings);
-        vm.clearAll();
-        vm.users.length = 0;
-        _.each(settings.users, function (user) {
-            vm.addUser(new usermodule.User(user));
-        });
-        vm.loadCalendars();
+        logf.event("settings updated", settings);
+        vm.init(settings);
     });
+    app.on("logon:fail", function (feil) {
+        logf.event("logon:fail", feil);
+    });
+
+
+
 
 
     return vm;

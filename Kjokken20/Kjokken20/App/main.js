@@ -34,10 +34,18 @@ define('gapi', ['async!https://apis.google.com/js/client.js!onload'],
 
 
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/auth'], function (system, app, viewLocator, auth) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/auth', 'logf'], function (system, app, viewLocator, auth, logf) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
+
+    // create the custom log type - system
+    logf.addType("system", "green", "log");
+    logf.addType('auth', 'yellow', 'log');
+    logf.addType('event', 'blue', 'info');
+    logf.off('system', 'auth');
+    // reassigning the system.logger to custom logger. this replaces -> system.debug(true);
+    system.log = logf.system;
 
     // Global auth for use with google
     window.auth = auth;

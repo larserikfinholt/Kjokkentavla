@@ -68,6 +68,7 @@ require(['jquery', 'jasmine-html'], function ($, jasmine) {
     specs.push('/app/services/azuremobile.spec.js');
     specs.push('/app/settings/settings.spec.js');
     specs.push('/app/services/googlecalendar.spec.js');
+    specs.push('/app/addons/manager.spec.js');
     //specs.push('/app/specs/auth.spec.js');
     //specs.push('/app/specs/settings.spec.js');
     //specs.push('/app/specs/calendar.spec.js');

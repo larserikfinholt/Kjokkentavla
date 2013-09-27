@@ -1,5 +1,5 @@
-define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi'],
-    function (system, app, azureMobile, gapiCalendar) {
+define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi','logf'],
+    function (system, app, azureMobile, gapiCalendar,logf) {
 
         if (window.superhack == undefined) {
 
@@ -7,16 +7,16 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi'],
             var clientId = '910460127884-r0d4g4h94h5j1lt8oab9h9o9mfgahd71.apps.googleusercontent.com';
             if (window.location.href.indexOf("localhost") > 0) { clientId = '910460127884.apps.googleusercontent.com'; }
 
-            console.log('loaded googleCalendar module');
+            logf.debug('loaded googleCalendar module');
 
             window.setTimeout(function () {
 
                 if (!window.superhack.isAuthorized) {
 
-                    console.log('Not authenticated yet. Trying to authorize automatic... ', vm);
+                    logf.auth('Not authenticated yet. Trying to authorize automatic... ', vm);
                     window.superhack.grantAccessToCalendars(true);
                 } else {
-                    console.log('Already authenticated....');
+                    logf.auth('Already authenticated....');
                 }
 
             }, 2000);
@@ -36,10 +36,10 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi'],
                             // Step 6: Execute the API request
                             request.execute(function (resp) {
                                 if (resp != undefined && resp.error) {
-                                    console.error("Error during gapi call", resp);
+                                    logf.error("Error during gapi call", resp);
                                     dfd.reject(resp.error);
                                 } else {
-                                    console.log('Got results from google calendar', resp);
+                                    logf.debug('Got results from google calendar', resp);
                                     var items = resp.items.map(function (cal) {
 
                                         return { value: cal.id, name: cal.summary };
@@ -67,7 +67,7 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi'],
                             // Step 6: Execute the API request
                             request.execute(function (resp) {
                                 if (resp != undefined && resp.error) {
-                                    console.error("Error during gapi call", resp);
+                                    logf.error("Error during gapi call", resp);
                                     dfd.reject(resp.error);
                                 } else {
                                     //console.log('Got results from google', resp);
@@ -85,13 +85,13 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi'],
                     var self = this;
                     var dfd = new jQuery.Deferred();
 
-                    console.log("GrantAccessToCalendars - calling gapi.auth.authorize. Immediate:", noPopup);
+                    logf.auth("GrantAccessToCalendars - calling gapi.auth.authorize. Immediate:", noPopup);
                     gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: noPopup }, function (authResult) {
 
                         if (authResult && !authResult.error) {
-                            console.log('gapi.auth.authorize success', authResult.access_token);
+                            logf.auth('gapi.auth.authorize success', authResult.access_token);
                             if (authResult.access_token == undefined) {
-                                console.error("Empty accesstoken from gapi.auth.auhorize", authResult);
+                                logf.error("Empty accesstoken from gapi.auth.auhorize", authResult);
                             }
                             self.isAuthorized = true;
                             app.trigger('googleauth:success', authResult);
@@ -123,7 +123,7 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi'],
 
                         });
                     } else {
-                        console.log("'resolving with not authorized", this);
+                        log.error("'resolving with not authorized", this);
                         dfd.resolve('Not authorized...');
                     }
                     return dfd.promise();

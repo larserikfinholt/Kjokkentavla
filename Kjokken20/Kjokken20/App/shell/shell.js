@@ -1,4 +1,4 @@
-﻿define(['plugins/router', 'durandal/app', 'main/main'], function (router, app, main) {
+﻿define(['plugins/router', 'durandal/app', 'main/main', 'logf'], function (router, app, main, logf) {
     var shell= {
         router: router,
         search: function() {
@@ -20,7 +20,7 @@
     };
 
     app.on("login:success", function (authResult) {
-        console.log("Authentication sucess - removing login screen", authResult, true);
+        logf.auth("Authentication sucess - removing login screen", authResult, true);
         shell.loggedIn(true);
     });
 
