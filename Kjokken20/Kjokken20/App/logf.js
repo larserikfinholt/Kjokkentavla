@@ -184,6 +184,14 @@
             }
         };
 
+
+        // create the custom log type - system
+        logf.addType("system", "green", "log");
+        logf.addType('auth', 'yellow', 'log');
+        logf.addType('event', 'blue', 'info');
+        logf.off('system', 'auth');
+
+
         return logf;
     });
 }

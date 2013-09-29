@@ -69,9 +69,9 @@
     vm.changeWeek(0);
 
     app.on("settings:loaded", function (settings) {
-        logf.event("settings loaded", settings);
+        logf.event("settings loaded");
         vm.init(settings);
-        addonManager.init(settings.addonSettings);
+        addonManager.init(settings.addonSettings, vm.users());
     });
 
     app.on('login:success', function (authResult) {
@@ -79,7 +79,7 @@
     });
 
     app.on("settings:updated", function (settings) {
-        logf.event("settings updated", settings);
+        logf.event("settings updated");
         vm.init(settings);
     });
     app.on("logon:fail", function (feil) {

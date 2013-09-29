@@ -39,11 +39,11 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/aut
     system.debug(true);
     //>>excludeEnd("build");
 
-    // create the custom log type - system
-    logf.addType("system", "green", "log");
-    logf.addType('auth', 'yellow', 'log');
-    logf.addType('event', 'blue', 'info');
-    logf.off('system', 'auth');
+    //// create the custom log type - system
+    //logf.addType("system", "green", "log");
+    //logf.addType('auth', 'yellow', 'log');
+    //logf.addType('event', 'blue', 'info');
+    //logf.off('system', 'auth');
     // reassigning the system.logger to custom logger. this replaces -> system.debug(true);
     system.log = logf.system;
 

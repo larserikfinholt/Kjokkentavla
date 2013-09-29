@@ -140,6 +140,7 @@
     <Content Include="App\addons\manager.js" />
     <Content Include="App\addons\manager.spec.js" />
     <Content Include="App\addons\readbook\readbook.js" />
+    <Content Include="App\addons\scheduler.js" />
     <Content Include="App\async.js" />
     <Content Include="App\calendarService\calendarservice.js" />
     <Content Include="App\calendar\calendar-dialog.html" />

@@ -31,25 +31,6 @@
         }
     }
 
-    function addonData(user) {
-
-        addonManager.loadItems({ userId: user.userId }).then(function (result) {
-
-            if (result != undefined) {
-                _.each(result, function (item) {
-                    var toAdd = new CalendarEntry({ id: item.id, title: item.summary, start: moment(item.start.dateTime), type: item.addonType });
-                    user.addCalendarEntry(toAdd);
-
-                });
-            } 
-
-
-
-        });
-
-
-    }
-
 
 
     function randomData(user) {
@@ -102,7 +83,6 @@
             //randomData(user);
             //dummyData(user);
             googleData(user);
-            addonData(user);
 
         },
         updateCalendarEntry: function (user, item) {

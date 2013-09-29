@@ -101,19 +101,19 @@
             if (client.currentUser != null) {
                 runs(function () {
                     target.loadSettings().done(function (orginal) {
-                            orginal.name = "UpdatedName" + timestamp;
-                            //orginal.users=  [{ id: 1, name: 'lars' }, { id: 2, name: 'Camilla' }];
-                            target.updateSettings(orginal).done(
-                                function (d) {
-                                    expect(d.name).toBe("UpdatedName" + timestamp);
-                                    console.log("read back", d);
-                                    flag = "ok";
-                                },
-                                function (err) {
-                                    console.log("error updating:", err)
-                                    flag = "error";
-                                }
-                                );
+                        orginal.name = "UpdatedName" + timestamp;
+                        //orginal.users=  [{ id: 1, name: 'lars' }, { id: 2, name: 'Camilla' }];
+                        target.updateSettings(orginal).done(
+                            function (d) {
+                                expect(d.name).toBe("UpdatedName" + timestamp);
+                                console.log("read back", d);
+                                flag = "ok";
+                            },
+                            function (err) {
+                                console.log("error updating:", err)
+                                flag = "error";
+                            }
+                            );
                     });
                 });
 
@@ -190,8 +190,8 @@
                                 );
                         } else {
                             console.log("nothing to test on.,");
-                            client.getTable("AddonSettings").insert({ appName: 'test', config: { test: 123, jalla: 'jalla' } }).then(function(dum){
-                                console.log("added dummydata...",dum);
+                            client.getTable("AddonSettings").insert({ appName: 'test', config: { test: 123, jalla: 'jalla' } }).then(function (dum) {
+                                console.log("added dummydata...", dum);
                             });
                         }
                     });
@@ -211,6 +211,39 @@
 
 
         });
+
+        it("should be able to add and delete addondata", function () {
+
+            var client = target.client,
+                        flag = '-';
+
+            runs(function () {
+                target.insertAddonEntry({ appName: 'test', value: 'unittest', memberId: 99, time: moment.utc().toISOString() }).then(function (justAdded) {
+                    expect(justAdded.appName).toBe('test');
+                    //console.log("read back inserted", justAdded);
+                    target.deleteAddonEntry(justAdded).done(function (d) {
+                        flag = "ok";
+                    }, function (err) {
+                        console.log('error deleting', err);
+                    });
+
+                });
+            });
+
+            waitsFor(function () {
+                return flag != "-";
+            }, 2000);
+
+            runs(function () {
+                expect(flag).toBe("ok");
+
+            });
+
+
+
+
+        });
+
 
         xit("should be possible to add an item", function () {
             var client = target.client,

@@ -15,6 +15,8 @@ define(['durandal/system', 'durandal/app', 'azurelib', 'logf'],
 
         var updateSettings = function (settings) {
 
+            delete settings.addonSettings;
+            console.log('updating', settings);
             return client.getTable("Settings").update(settings);
 
         }
@@ -38,6 +40,15 @@ define(['durandal/system', 'durandal/app', 'azurelib', 'logf'],
         var loadAddonData = function () {
 
             return client.getTable("AddonData").read();
+        }
+
+        var insertAddonEntry = function (entry) {
+
+            return client.getTable("AddonData").insert(entry);
+        }
+        var deleteAddonEntry = function (entryId) {
+
+            return client.getTable("AddonData").del(entryId);
         }
 
 
@@ -79,6 +90,8 @@ define(['durandal/system', 'durandal/app', 'azurelib', 'logf'],
             updateAddonSettings: updateAddonSettings,
             loadAddonSettings: loadAddonSettings,
             loadAddonData: loadAddonData,
+            insertAddonEntry: insertAddonEntry,
+            deleteAddonEntry: deleteAddonEntry
 
 
         }

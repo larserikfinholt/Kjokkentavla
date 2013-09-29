@@ -10,7 +10,7 @@
         });
 
 
-        it('should load configurations for all addons on init and send "addonsettings:loaded"', function () {
+        it('should load data and call init on all addons', function () {
 
             var flag = "-";
 
@@ -23,11 +23,11 @@
             });
 
             waitsFor(function () {
-                return target.settings;
+                return target.initCompleted==true;
             }, 2000);
 
             runs(function () {
-                expect(target.settings.length).toBeGreaterThan(1);
+                expect(target.initCompleted).toBe(true);
             });
 
         });
