@@ -1,4 +1,4 @@
-﻿define(['plugins/http', 'durandal/app', 'knockout', 'calendarservice/calendarservice', 'calendar/calendar-dialog', 'calendar/todo-dialog'], function (http, app, ko, cal, calendarModal,todoDialog) {
+﻿define(['plugins/http', 'durandal/app', 'knockout', 'calendar/calendarservice', 'calendar/calendar-dialog', 'calendar/todo-dialog'], function (http, app, ko, cal, calendarModal,todoDialog) {
 
     var User = function (init) {
         var self = this;

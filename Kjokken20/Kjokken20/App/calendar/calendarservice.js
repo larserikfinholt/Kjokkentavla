@@ -1,15 +1,5 @@
-﻿define(['plugins/http', 'durandal/app', 'knockout', 'underscore','calendar/dummydata', 'services/googleCalendar', 'addons/manager'], function (http, app, ko,_, dummydata, googleCalendar, addonManager) {
+﻿define(['plugins/http', 'durandal/app', 'knockout', 'underscore','calendar/dummydata', 'services/googleCalendar', 'addons/manager', 'calendar/calendarEntry'], function (http, app, ko,_, dummydata, googleCalendar, addonManager, calendar) {
 
-    var CalendarEntry = function (init) {
-        var self = this;
-
-        this.title = init.title;
-        this.start = init.start;
-        this.id = init.id;
-        this.type = init.type;
-
-
-    };
 
     function googleData(user) {
         var now = new Date();
@@ -19,7 +9,7 @@
 
                 if (result != undefined) {
                     _.each(result, function (item) {
-                        var toAdd = new CalendarEntry({ id: item.etag, title: item.summary, start: moment(item.start.dateTime), type:0 });
+                        var toAdd = new calendar.CalendarEntry({ id: item.etag, title: item.summary, start: moment(item.start.dateTime), type:0 });
                         user.addCalendarEntry(toAdd);
 
                     });
@@ -39,10 +29,10 @@
         var max2 = Math.floor(Math.random() * 4);
         var date = Date();
         for (var i = 0; i < max1; i++) {
-            user.addCalendarEntry(new CalendarEntry({ id: id++, title: 'Fotballtrening title' + i, start: date, type: 0 }));
+            user.addCalendarEntry(new calendar.CalendarEntry({ id: id++, title: 'Fotballtrening title' + i, start: date, type: 0 }));
         }
         for (var i = 0; i < max2; i++) {
-            user.addCalendarEntry(new CalendarEntry({ id: id++, title: 'Husk dette' + i, start: date, type: 1 }));
+            user.addCalendarEntry(new calendar.CalendarEntry({ id: id++, title: 'Husk dette' + i, start: date, type: 1 }));
         }
 
 
@@ -51,10 +41,10 @@
 
         date = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
         for (var i = 0; i < max1; i++) {
-            user.addCalendarEntry(new CalendarEntry({ id: id++, title: 'ImorgenAktitet title' + i, start: date, type: 0 }));
+            user.addCalendarEntry(new calendar.CalendarEntry({ id: id++, title: 'ImorgenAktitet title' + i, start: date, type: 0 }));
         }
         for (var i = 0; i < max2 ; i++) {
-            user.addCalendarEntry(new CalendarEntry({ id: id++, title: 'Remember this' + i, start: date, type: 1 }));
+            user.addCalendarEntry(new calendar.CalendarEntry({ id: id++, title: 'Remember this' + i, start: date, type: 1 }));
         }
 
     }
@@ -67,12 +57,12 @@
             _.each(dummydata.todos, function (data) {
                 _.each(data.userIds[day], function (userId) {
                     if (user.id == userId) {
-                        user.addCalendarEntry(new CalendarEntry({ id: idcount++, title: data.title, start: date, type: 1, todoId: data.id }));
+                        user.addCalendarEntry(new calendar.CalendarEntry({ id: idcount++, title: data.title, start: date, type: 1, todoId: data.id }));
                     }
                 });
             });
             for (var j = 0; j < 3; j++) {
-                user.addCalendarEntry(new CalendarEntry({ id: idcount++, title: 'Fotballtrening title' + j, start: date, type: 0 }));
+                user.addCalendarEntry(new calendar.CalendarEntry({ id: idcount++, title: 'Fotballtrening title' + j, start: date, type: 0 }));
             }
         }
     }
@@ -96,7 +86,7 @@
             }
         },
         getEmpty: function () {
-            return new CalendarEntry({ id: -1, title: '', start: new Date() });
+            return new calendar.CalendarEntry({ id: -1, title: '', start: new Date() });
         }
     };
 
@@ -105,7 +95,6 @@
     return {
 
         service: calendarService,
-        CalendarEntry: CalendarEntry
 
     }
 

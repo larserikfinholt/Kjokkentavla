@@ -1,4 +1,4 @@
-﻿define([], function () {
+﻿define(['calendar/calendarEntry'], function (calendar) {
 
     var Schedule = function (options) {
 
@@ -7,6 +7,19 @@
         this.repeatOptions = ['Weekly', 'Monthly'];
         this.repeat = options.repeat;
         this.users = options.users;
+
+        this.getScheduledItems=function(start, stop, options){
+
+            var items;
+
+
+
+
+
+            items.push(new calendar.CalendarEntry({ title: options.title, start: moment.utc().toISOString(), type: options.type }));
+
+            return items;
+        };
     }
 
     var OnClickPopup = function (options) {
