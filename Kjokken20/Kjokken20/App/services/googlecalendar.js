@@ -5,11 +5,16 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi','logf'
 
             var scopes = ['https://www.googleapis.com/auth/plus.me', ' https://www.googleapis.com/auth/calendar'];
             var clientId = '910460127884-r0d4g4h94h5j1lt8oab9h9o9mfgahd71.apps.googleusercontent.com';
-            if (window.location.href.indexOf("localhost") > 0) { clientId = '910460127884.apps.googleusercontent.com'; }
+            if (window.location.href.indexOf("localhost") >= 0) { clientId = '910460127884.apps.googleusercontent.com'; }
 
             logf.debug('loaded googleCalendar module');
 
             window.setTimeout(function () {
+
+
+                ///////////////////////////////////////////////
+                //return;
+
 
                 if (!window.superhack.isAuthorized) {
 
@@ -123,7 +128,7 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi','logf'
 
                         });
                     } else {
-                        log.error("'resolving with not authorized", this);
+                        logf.error("'resolving with not authorized", this);
                         dfd.resolve('Not authorized...');
                     }
                     return dfd.promise();
@@ -144,7 +149,7 @@ define(['durandal/system', 'durandal/app', 'services/azuremobile', 'gapi','logf'
             window.fallbackAuth = function () {
                 //alert('this is just temporary....');
                 //azureMobile.login();
-                window.superhack.grantAccessToCalendars(true);
+                window.superhack.grantAccessToCalendars(false);
             }
 
 

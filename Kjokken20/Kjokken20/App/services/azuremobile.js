@@ -55,7 +55,8 @@ define(['durandal/system', 'durandal/app', 'azurelib', 'logf'],
         var login = function (googleAuthResult) {
 
             logf.auth('Azure client doing google login with token', googleAuthResult.access_token);
-            client.login("google",  {"access_token": googleAuthResult.access_token}).then(function (user) {
+            //client.login("google",  {"access_token": googleAuthResult.access_token}).then(function (user) {
+            client.login("google").then(function (user) {
                 logf.auth("Azure client login success for user", user);
                 app.trigger("login:success", user);
                 loadSettings().done(function (settings) {
@@ -75,6 +76,9 @@ define(['durandal/system', 'durandal/app', 'azurelib', 'logf'],
                 });
             }, function (err) {
                 app.trigger("login:fail", err);
+                logf.error('azure login failed', err);
+                alert('login to azure failed!');
+                ////////////
             });
         };
 

@@ -1,0 +1,35 @@
+﻿<div>
+    <!--<form class="form-horizontal" role="form">-->
+    <!-- repeat -->
+    <div class="row">
+        <div class="form-group">
+            <label for="repeat" class="col-lg-2 control-label">Repeat</label>
+            <div class="col-lg-10">
+                <select id="repeat" data-bind="options: schedule().repeatOptions, value: repeat, optionsCaption: 'Repeat interval'"></select>
+            </div>
+        </div>
+        <!-- display time-->
+        <div class="form-group">
+            <label for="displayTime" class="col-lg-2 control-label">Display time</label>
+            <div class="col-lg-10">
+                <select id="displayTime" data-bind="options: schedule().displayTimeOptions, value: displayTime, optionsCaption: 'Display time'"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row" data-bind="foreach: allUsers">
+        <div class="col-lg-1">
+            <h4 data-bind="text: $data.name"></h4>
+            <ul data-bind="foreach: [0,1,2,3,4,5,6]">
+                <li>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-bind="checked: $data.selectedDays[$index()]"><span data-bind="    text: $data.selectedDays[$index()]"></span>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button data-bind="click:save">Save</button>
+    <!--</form>-->
+</div>

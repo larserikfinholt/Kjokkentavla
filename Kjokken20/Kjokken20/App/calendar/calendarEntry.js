@@ -7,6 +7,7 @@
         this.start = init.start;
         this.id = init.id;
         this.type = init.type;
+        this.owner = init.owner;
 
     };
 

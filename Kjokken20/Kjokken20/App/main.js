@@ -22,16 +22,28 @@
 
 define('jquery', function () { return jQuery; });
 define('knockout', ko);
+
+// Offline remove
 define('gapi', ['async!https://apis.google.com/js/client.js!onload'],
     function () {
         console.log('gapi loaded');
-        // Step 2: Reference the API key (https://code.google.com/apis/console/?pli=1#project:910460127884:access)
-        var apiKey = 'AIzaSyANE4eQbcntAG7wHWAv8YLBMcILGVeleSQ';
-        gapi.client.setApiKey(apiKey);
+        // step 2: reference the api key (https://code.google.com/apis/console/?pli=1#project:910460127884:access)
+        var apikey = 'aizasyane4eqbcntag7whwav8ylbmcilgvelesq';
+        //gapi.client.setApiKey(apikey);
         return gapi.client;
     }
 );
 
+// Offline include
+//define('gapi', [], function () {
+//    var auth = {
+//        authorize: function () { }
+//    }
+//    var gapi = {
+//        auth: auth
+//    };
+//    window.gapi = gapi;
+//});
 
 
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'services/auth', 'logf'], function (system, app, viewLocator, auth, logf) {

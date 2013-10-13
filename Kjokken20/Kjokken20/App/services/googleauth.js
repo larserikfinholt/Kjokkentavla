@@ -1,6 +1,7 @@
 define(['durandal/system', 'durandal/app'],
     function (system, app) {
 
+
         var scopes = 'https://www.googleapis.com/auth/plus.me';
         var clientId =  '910460127884-r0d4g4h94h5j1lt8oab9h9o9mfgahd71.apps.googleusercontent.com';
 
@@ -21,12 +22,12 @@ define(['durandal/system', 'durandal/app'],
         function handleClientLoad() {
             log("Google authentication");
             var apiKey = 'AIzaSyANE4eQbcntAG7wHWAv8YLBMcILGVeleSQ';
-            gapi.client.setApiKey(apiKey);
+            //gapi.client.setApiKey(apiKey);
             window.setTimeout(auth.checkAuth, 1);
         }
 
         function checkAuth() {
-            if (window.location.href.indexOf("localhost")>0) { clientId = '910460127884.apps.googleusercontent.com'; }
+            if (window.location.href.indexOf("localhost")>=0) { clientId = '910460127884.apps.googleusercontent.com'; }
             gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: true }, handleAuthResult);
         }
 

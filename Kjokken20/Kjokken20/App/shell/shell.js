@@ -6,13 +6,16 @@
             //You can add custom options too. Also, it returns a promise for the user's response.
             app.showMessage('Search not yet implemented...');
         },
-        loggedIn: ko.observable(false),
+///////////////////////////////////////////        loggedIn: ko.observable(false),
+        loggedIn: ko.observable(true),
 
         activate: function () {
             router.map([
                 { route: '', title:'Main', moduleId: 'main/main', nav: true },
                 { route: 'flickr', moduleId: 'viewmodels/flickr', nav: true },
-            { route: 'settings', moduleId: 'settings/settings', nav: true }
+                { route: 'settings/general', moduleId: 'settings/settings', nav: false },
+                { route: 'settings/:id', moduleId: 'addons/settings', nav: false },
+            { route: 'settings', moduleId: 'settings/settingslist', nav: true }
             ]).buildNavigationModel();
             
             return router.activate();

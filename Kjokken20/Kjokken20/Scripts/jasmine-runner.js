@@ -47,6 +47,17 @@ define('gapi', ['async!https://apis.google.com/js/client.js!onload'],
         return gapi.client;
     }
 );
+// Offline include
+//define('gapi', [], function () {
+//    var auth = {
+//        authorize: function () { }
+//    }
+//    var gapi = {
+//        auth: auth
+//    };
+//    window.gapi = gapi;
+//});
+
 
 
 require(['jquery', 'jasmine-html'], function ($, jasmine) {
@@ -70,9 +81,6 @@ require(['jquery', 'jasmine-html'], function ($, jasmine) {
     specs.push('/app/services/googlecalendar.spec.js');
     specs.push('/app/addons/manager.spec.js');
     specs.push('/app/addons/scheduler.spec.js');
-    //specs.push('/app/specs/auth.spec.js');
-    //specs.push('/app/specs/settings.spec.js');
-    //specs.push('/app/specs/calendar.spec.js');
 
 
 

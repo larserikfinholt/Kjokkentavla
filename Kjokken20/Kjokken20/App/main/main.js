@@ -1,4 +1,5 @@
-﻿define(['plugins/http', 'durandal/app', 'knockout', 'user/user', 'underscore', 'calendar/dummydata', 'settings/settings', 'addons/manager', 'logf'], function (http, app, ko, usermodule, _, dummydata, settings, addonManager, logf) {
+﻿define(['plugins/http', 'durandal/app', 'knockout', 'user/user', 'underscore', 'calendar/dummydata', 'settings/settings', 'addons/manager', 'addons/settings', 'logf'],
+    function (http, app, ko, usermodule, _, dummydata, settings, addonManager, addonSettings, logf) {
 
     moment.lang('en', {
         week: {
@@ -26,6 +27,10 @@
                 self.addUser(new usermodule.User(user));
             });
             // Load calendars
+
+            ////////////////////
+
+            console.log("Skipping calendar load");return;
             logf.debug('loading calendar items for all users');
             _.each(this.users(), function (user) {
                 user.loadCalendar();

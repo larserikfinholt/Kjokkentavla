@@ -140,8 +140,13 @@
     <Content Include="App\addons\manager.js" />
     <Content Include="App\addons\manager.spec.js" />
     <Content Include="App\addons\readbook\readbook.js" />
-    <Content Include="App\addons\scheduler .js" />
+    <Content Include="App\addons\readbook\readbookSettings.html" />
+    <Content Include="App\addons\readbook\readbookSettings.js" />
+    <Content Include="App\addons\scheduler.html" />
+    <Content Include="App\addons\scheduler.js" />
     <Content Include="App\addons\scheduler.spec.js" />
+    <Content Include="App\addons\settings.html" />
+    <Content Include="App\addons\settings.js" />
     <Content Include="App\async.js" />
     <Content Include="App\calendar\calendarEntry.js" />
     <Content Include="App\calendar\calendarservice.js" />
@@ -165,6 +170,8 @@
     <Content Include="App\services\googleauth.js" />
     <Content Include="App\services\mockdata.js" />
     <Content Include="App\services\azuremobile.spec.js" />
+    <Content Include="App\settings\settingslist.js" />
+    <Content Include="App\settings\settingslist.html" />
     <Content Include="App\settings\settings.html" />
     <Content Include="App\settings\settings.js" />
     <Content Include="App\settings\user-dialog.html" />
